@@ -25,7 +25,6 @@ const Navbar = () => {
             FridgeLens
           </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex h-16 items-center">
             {navLinks.map((link) => (
               <Link
@@ -46,7 +45,6 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             className="md:hidden p-4 h-16 flex items-center hover:bg-[#519df5] transition-colors duration-200"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -70,7 +68,6 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         {isMenuOpen && (
           <div>
             {navLinks.map((link) => (

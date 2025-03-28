@@ -124,10 +124,8 @@ export default function Home() {
         );
       })}
   
-      {/* Heading */}
       <h1 className="text-5xl sm:text-6xl font-extrabold text-blue-700 tracking-tight z-10">FridgeLens</h1>
   
-      {/* Typing Effect */}
       <p className="text-2xl sm:text-3xl text-gray-300 font-medium h-10 z-10">
         Your next{" "}
         <span className="inline-block text-blue-600">
@@ -136,7 +134,6 @@ export default function Home() {
         </span>
       </p>
   
-      {/* Welcome & Tagline */}
       <p className="text-lg sm:text-xl text-gray-700 max-w-2xl z-10">
         Welcome to FridgeLens — the tool that helps you make the most of what’s in your fridge.
       </p>
@@ -145,7 +142,6 @@ export default function Home() {
         Turn your fridge into a personal chef with FridgeLens!
       </p>
   
-      {/* Instruction Box */}
       <div className="z-10 mt-6 bg-blue-950/30 border border-blue-600 p-6 rounded-xl shadow max-w-xl backdrop-blur-sm">
         <h2 className="text-lg sm:text-xl font-semibold text-blue-600 mb-2">How it works:</h2>
         <ul className="text-left list-disc list-inside text-gray-200 space-y-1 text-base sm:text-lg">

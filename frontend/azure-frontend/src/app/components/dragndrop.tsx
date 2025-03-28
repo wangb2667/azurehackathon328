@@ -5,11 +5,17 @@ import { MdClear } from "react-icons/md";
 
 interface DragNdropProps {
   onFilesSelected: (files: File[]) => void;
+  onSubmit?: () => void;
   width?: string | number;
   height?: string | number;
 }
 
-const DragNdrop: React.FC<DragNdropProps> = ({ onFilesSelected, width = "100%", height }) => {
+const DragNdrop: React.FC<DragNdropProps> = ({
+  onFilesSelected,
+  onSubmit,
+  width = "100%",
+  height,
+}) => {
   const [files, setFiles] = useState<File[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const resultRef = useRef<HTMLDivElement | null>(null);
@@ -37,6 +43,7 @@ const DragNdrop: React.FC<DragNdropProps> = ({ onFilesSelected, width = "100%", 
 
   const handleSubmit = () => {
     setSubmitted(true);
+    if (onSubmit) onSubmit(); // ✅ Correct usage
   };
 
   useEffect(() => {
@@ -53,7 +60,7 @@ const DragNdrop: React.FC<DragNdropProps> = ({ onFilesSelected, width = "100%", 
     <div className="w-full flex flex-col items-center">
       <section
         className="w-full max-w-xl bg-white/20 border border-white/30 backdrop-blur-md rounded-2xl shadow-lg p-6"
-        style={{ width, height }}
+        style={{ width, ...(height ? { minHeight: height } : {}) }}
       >
         <div
           onDrop={handleDrop}
@@ -108,14 +115,14 @@ const DragNdrop: React.FC<DragNdropProps> = ({ onFilesSelected, width = "100%", 
 
           {files.length > 0 && (
             <div className="mt-4 flex flex-col items-center w-full">
-              <div className="flex items-center text-green-600">
+              <div className="flex items-center text-green-400">
                 <AiOutlineCheckCircle className="mr-2" />
                 <p className="text-sm font-medium">{files.length} file(s) selected</p>
               </div>
 
               <button
                 onClick={handleSubmit}
-                className="mt-4 px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-all text-sm font-semibold"
+                className="mt-4 px-6 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-all text-sm font-semibold"
               >
                 Submit
               </button>
@@ -123,15 +130,6 @@ const DragNdrop: React.FC<DragNdropProps> = ({ onFilesSelected, width = "100%", 
           )}
         </div>
       </section>
-
-      {submitted && (
-        <div
-          ref={resultRef}
-          className="w-full mt-10 px-6 py-4 bg-green-100 text-green-800 rounded-lg shadow-md text-center max-w-6xl"
-        >
-          Files submitted successfully! (Results go here.)
-        </div>
-      )}
     </div>
   );
 };
